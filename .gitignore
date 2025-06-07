@@ -19,6 +19,8 @@ _ReSharper.Caches/
 /Tools/gradle/.settings/
 /Gradle/
 /Plugins/ULlamaPlugin
+/Content/3rdparty
+/Content/MetaHumans
 /builds
 
 # Visual Studio 2015 database file
