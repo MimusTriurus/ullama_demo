@@ -23,7 +23,7 @@ struct FNpcData : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString VoiceModelPath;
-
+	// obsolete
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString KnowledgeBaseId;
 };
