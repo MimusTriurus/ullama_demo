@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
+#include "ULlamaStructures.h"
 #include "NpcData.generated.h"
 
 USTRUCT(BlueprintType)
@@ -23,8 +24,8 @@ struct FNpcData : public FTableRowBase
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString VoiceModelPath;
-	// obsolete
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FString KnowledgeBaseId;
+	TArray<FActionData> ActionData;
 };
 
