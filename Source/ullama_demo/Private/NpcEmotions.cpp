@@ -39,3 +39,16 @@ ENpcEmotion UNpcEmotionsHelpers::StringToEmotionEnum(const FString& InString)
 	}
 	return ENpcEmotion::None;
 }
+
+TArray<FString> UNpcEmotionsHelpers::EmotionEnumToArray()
+{
+	TArray<FString> Result;
+	const UEnum* EnumPtr = StaticEnum<ENpcEmotion>();
+	if (!EnumPtr) return Result;
+
+	for (int32 i = 1; i < EnumPtr->NumEnums() - 1; ++i)
+	{
+		Result.Add(EnumPtr->GetNameStringByIndex(i));
+	}
+	return Result;
+}

@@ -25,4 +25,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "ENpcEmotions")
 	static ENpcEmotion StringToEmotionEnum(const FString& InString);
+
+	UFUNCTION(BlueprintPure, Category = "ENpcEmotions")
+	static TArray<FString> EmotionEnumToArray();
 };
