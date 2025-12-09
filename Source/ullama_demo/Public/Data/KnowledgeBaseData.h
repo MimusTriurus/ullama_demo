@@ -4,42 +4,53 @@
 #include "UObject/Object.h"
 #include "KnowledgeBaseData.generated.h"
 
+UCLASS(Abstract, Blueprintable, EditInlineNew, DefaultToInstanced)
+class ULLAMA_DEMO_API UKnowledgeBaseDataGetterBase : public UObject
+{
+	GENERATED_BODY()
+public:
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="NpcKnowledgeBase")
+	FString Get();
+
+	virtual FString Get_Implementation();
+};
+
 USTRUCT(BlueprintType)
-struct ULLAMA_DEMO_API FKnowledgeBaseData : public FTableRowBase
+struct ULLAMA_DEMO_API FKnowledgeBaseData
 {
 	GENERATED_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(MultiLine=true))
 	FText Summary;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(MultiLine=true))
-	FText FullData;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<FString> Triggers;
+	UKnowledgeBaseDataGetterBase* DataGetter;
 };
 
 UCLASS(BlueprintType)
-class UNpcDataTableRegistry : public UDataAsset
+class UNpcKnowledgeBaseData : public UDataAsset
+{
+	GENERATED_BODY()
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TArray<FKnowledgeBaseData> KnowledgeBaseDatasTemplates;
+};
+
+UCLASS(BlueprintType)
+class UNpcKnowledgeBaseDataRegistry : public UDataAsset
 {
 	GENERATED_BODY()
 
 public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TMap<FName, UDataTable*> DataTables;
+	TMap<FName, UNpcKnowledgeBaseData*> KnowledgeBases;
+	
+	UFUNCTION(BlueprintCallable, Category = "NpcKnowledgeBase")
+	UNpcKnowledgeBaseData* GetNpcKnowledgeBaseData(const FName& NpcName) const;
 
-	UFUNCTION(BlueprintCallable, Category = "Data")
-	UDataTable* GetTableByKey(FName TableKey) const;
-};
+	UFUNCTION(BlueprintCallable, Category = "NpcKnowledgeBase")
+	FString GetKnowledgeBaseData(const FName& NpcName, int32 Idx) const;
 
-UCLASS()
-class UKnowledgeBaseDataHelper : public UBlueprintFunctionLibrary
-{
-	GENERATED_BODY()
-public:
-	UFUNCTION(BlueprintCallable, Category = "UKnowledgeBaseHelper")
-	static TArray<FString> UKbGetSummaries(UDataTable* DataTable);
-
-	UFUNCTION(BlueprintCallable, Category = "UKnowledgeBaseHelper")
-	static bool UKbGetData(UDataTable* DataTable, int32 Index, UPARAM(ref) FKnowledgeBaseData& KbData);
+	UFUNCTION(BlueprintCallable, Category = "NpcKnowledgeBase")
+	TArray<FString> GetNpcKnowledgeBaseDataSummaries(const FName& NpcName) const;
 };

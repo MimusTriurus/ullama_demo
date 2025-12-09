@@ -1,34 +1,51 @@
 ﻿#include "Data/KnowledgeBaseData.h"
 
-UDataTable* UNpcDataTableRegistry::GetTableByKey(FName TableKey) const
+FString UKnowledgeBaseDataGetterBase::Get_Implementation()
 {
-	if (UDataTable* const* Found = DataTables.Find(TableKey))
+	return FString();
+}
+
+UNpcKnowledgeBaseData* UNpcKnowledgeBaseDataRegistry::GetNpcKnowledgeBaseData(const FName& NpcName) const
+{
+	if (UNpcKnowledgeBaseData* const* Found = KnowledgeBases.Find(NpcName))
 	{
 		return *Found;
 	}
 	return nullptr;
 }
 
-TArray<FString> UKnowledgeBaseDataHelper::UKbGetSummaries(UDataTable* DataTable)
+FString UNpcKnowledgeBaseDataRegistry::GetKnowledgeBaseData(const FName& NpcName, int32 Idx) const
 {
-	TArray<FKnowledgeBaseData*> KnowledgeBaseDatas;
-	DataTable->GetAllRows(TEXT("==> UKbGetSummaries: Load KB datas"), KnowledgeBaseDatas);
-	TArray<FString> Summaries;
-	for (int32 i = 0; i < KnowledgeBaseDatas.Num(); ++i)
+	FString Result;
+	if (auto Found = KnowledgeBases.Find(NpcName))
 	{
-		Summaries.Emplace(KnowledgeBaseDatas[i]->Summary.ToString());
+		UNpcKnowledgeBaseData* KB = *Found;
+		if (KB->KnowledgeBaseDatasTemplates.IsValidIndex(Idx))
+		{
+			auto& KBD = KB->KnowledgeBaseDatasTemplates[Idx];
+			if (KBD.DataGetter)
+			{
+				Result = KBD.DataGetter->Get();
+			}
+			else
+			{
+				Result = TEXT("");
+			}
+		}
 	}
-	return Summaries;
+	return Result;
 }
 
-bool UKnowledgeBaseDataHelper::UKbGetData(UDataTable* DataTable, int32 Index, FKnowledgeBaseData& KbData)
+TArray<FString> UNpcKnowledgeBaseDataRegistry::GetNpcKnowledgeBaseDataSummaries(const FName& NpcName) const
 {
-	TArray<FKnowledgeBaseData*> KnowledgeBaseDatas;
-	DataTable->GetAllRows(TEXT("==> UKbGetSummaries: Load KB datas"), KnowledgeBaseDatas);
-	if (Index >= 0 && Index < KnowledgeBaseDatas.Num())
+	TArray<FString> Summaries;
+	if (auto Found = KnowledgeBases.Find(NpcName))
 	{
-		KbData = *KnowledgeBaseDatas[Index];
-		return true;
+		UNpcKnowledgeBaseData* KB = *Found;
+		for (auto& Template : KB->KnowledgeBaseDatasTemplates)
+		{
+			Summaries.Add(Template.Summary.ToString());
+		}
 	}
-	return false;
+	return Summaries;
 }

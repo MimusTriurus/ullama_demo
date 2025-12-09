@@ -42,3 +42,5 @@ public:
 	UFUNCTION(BlueprintPure, Category = "UserBioDataHelper")
 	static FString UserBioDataToString(FUserBioData Data);
 };
+
+
