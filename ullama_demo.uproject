@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "5.6",
+	"EngineAssociation": "5.7",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -42,14 +42,6 @@
 			]
 		},
 		{
-			"Name": "MetaHuman",
-			"Enabled": true,
-			"SupportedTargetPlatforms": [
-				"Win64",
-				"Linux"
-			]
-		},
-		{
 			"Name": "SpeechGenerationSystem",
 			"Enabled": true,
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/5873ab4f73bb4b8f867e0a7f98081d05"
@@ -60,19 +52,7 @@
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/60d7aba5d0a84fb291304083f04d2923"
 		},
 		{
-			"Name": "MetaHumanCalibrationProcessing",
-			"Enabled": true,
-			"SupportedTargetPlatforms": [
-				"Win64",
-				"Linux"
-			]
-		},
-		{
 			"Name": "MetaHumanCharacter",
-			"Enabled": true
-		},
-		{
-			"Name": "MetaHumanLiveLink",
 			"Enabled": true
 		},
 		{

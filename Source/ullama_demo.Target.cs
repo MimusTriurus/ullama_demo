@@ -8,7 +8,7 @@ public class ullama_demoTarget : TargetRules
 	public ullama_demoTarget(TargetInfo Target) : base(Target)
 	{
 		Type = TargetType.Game;
-		DefaultBuildSettings = BuildSettingsVersion.V4;
+		DefaultBuildSettings = BuildSettingsVersion.Latest;
 
 		ExtraModuleNames.AddRange( new string[] { "ullama_demo" } );
 	}

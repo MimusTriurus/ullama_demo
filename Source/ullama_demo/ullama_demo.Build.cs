@@ -8,7 +8,14 @@ public class ullama_demo : ModuleRules
 	{
 		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
 	
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+		PublicDependencyModuleNames.AddRange(new string[]
+		{
+			"Core", 
+			"CoreUObject", 
+			"Engine", 
+			"InputCore", 
+			"MetaHumanCore",
+		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] { "ULlamaPlugin" });
 
