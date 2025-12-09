@@ -12,6 +12,8 @@ enum class EItemTypeEnum : uint8
 	Information UMETA(DisplayName = "Information"),
 
 	All UMETA(DisplayName = "All"),
+
+	Unknown UMETA(DisplayName = "Unknown"),
 };
 // start obsolete
 USTRUCT(BlueprintType)
@@ -68,16 +70,16 @@ struct FInventoryItem
 	FName Name;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	EItemTypeEnum ItemTypeEnum;
+	EItemTypeEnum ItemTypeEnum{EItemTypeEnum::Unknown};
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int32 Cost;
+	int32 Cost{0};
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(MultiLine=true))
 	FText Description;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int32 Amount;
+	int32 Amount{0};
 };
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnAddItem, FInventoryItem, Item);
@@ -89,6 +91,9 @@ class UInventoryRegistry : public UDataAsset
 	GENERATED_BODY()
 
 public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	int32 AvailableGold;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<FInventoryItem> InventoryItems;
 
@@ -107,7 +112,7 @@ public:
 	}
 
 	UFUNCTION(BlueprintCallable, Category = "InventoryItems")
-	bool RemoveItem(FName ItemName)
+	bool RemoveItemByName(FName ItemName)
 	{
 		for (int32 i = 0; i < InventoryItems.Num(); i++)
 		{
@@ -125,7 +130,7 @@ public:
 	}
 
 	UFUNCTION(BlueprintCallable, Category = "InventoryItems")
-	bool AddItem(FName ItemName)
+	bool AddItemByName(FName ItemName)
 	{
 		for (int32 i = 0; i < InventoryItems.Num(); i++)
 		{
@@ -137,6 +142,16 @@ public:
 			}
 		}
 		return false;
+	}
+
+	UFUNCTION(BlueprintCallable, Category = "InventoryItems")
+	bool AddItem(FInventoryItem Item)
+	{
+		if (!HasItem(Item.Name))
+		{
+			InventoryItems.Add(Item);
+		}
+		return AddItemByName(Item.Name);
 	}
 
 	UFUNCTION(BlueprintCallable, Category = "InventoryItems")
@@ -153,13 +168,30 @@ public:
 	}
 
 	UFUNCTION(BlueprintCallable, Category = "InventoryItems")
-	FString GetDescriptionByItemName(FName ItemName) const
+	bool HasItem(FName ItemName)
 	{
 		for (int32 i = 0; i < InventoryItems.Num(); i++)
 		{
 			if (InventoryItems[i].Name == ItemName)
 			{
-				return InventoryItems[i].Description.ToString();
+				return true;
+			}
+		}
+		return false;
+	}
+
+	UFUNCTION(BlueprintCallable, Category = "InventoryItems")
+	FString GetDescriptionByItemName(FName ItemName) const
+	{
+		for (int32 i = 0; i < InventoryItems.Num(); i++)
+		{
+			if (InventoryItems[i].Name == ItemName && InventoryItems[i].Amount > 0)
+			{
+				return FString::Printf(
+					TEXT("%s\r\nItem cost: %d dollars"),
+					*InventoryItems[i].Description.ToString(),
+					InventoryItems[i].Cost
+					);
 			}
 		}
 		return FString();
@@ -197,3 +229,20 @@ public:
 	FOnAddItem OnAddItem;
 	FOnDelItem OnDelItem;
 };
+
+UCLASS(BlueprintType)
+class UInventorySubsystem : public UGameInstanceSubsystem
+{
+	GENERATED_BODY()
+
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Config")
+	UInventoryRegistry* InventoryRegistry;
+
+	virtual void Initialize(FSubsystemCollectionBase& Collection) override;
+};
+
+inline void UInventorySubsystem::Initialize(FSubsystemCollectionBase& Collection)
+{
+	Super::Initialize(Collection);
+}

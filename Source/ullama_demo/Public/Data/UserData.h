@@ -44,3 +44,39 @@ public:
 };
 
 
+UCLASS(Abstract, Blueprintable, EditInlineNew, DefaultToInstanced)
+class UUserStateGetterBase : public UObject
+{
+	GENERATED_BODY()
+public:
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="UserState")
+	FString Get();
+
+	virtual FString Get_Implementation() const
+	{
+		return FString();
+	}
+};
+
+UCLASS(BlueprintType)
+class UUserStateDataRegistry : public UDataAsset
+{
+	GENERATED_BODY()
+
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TMap<FName, UUserStateGetterBase*> UsersStates;
+
+	UFUNCTION(BlueprintCallable, Category = "UserState") const
+	FString GetStateByUserName(FName Name)
+	{
+		if (UsersStates.Contains(Name))
+		{
+			return UsersStates[Name]->Get();
+		}
+		return FString();
+	}
+};
+
+
+
