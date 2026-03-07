@@ -15,6 +15,8 @@ public class ullama_demo : ModuleRules
 			"Engine", 
 			"InputCore", 
 			"MetaHumanCore",
+			"Json", 
+			"JsonUtilities"
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] { "ULlamaPlugin" });
