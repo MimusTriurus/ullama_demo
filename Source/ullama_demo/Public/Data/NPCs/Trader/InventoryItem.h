@@ -25,7 +25,7 @@ struct FItem : public FTableRowBase
 	FString Title;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int32 Cost;
+	int32 Cost{0};
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(MultiLine=true))
 	FText Description;
@@ -47,7 +47,7 @@ struct FWeapon : public FItem
 	GENERATED_USTRUCT_BODY()
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	int32 Damage;
+	int32 Damage{0};
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FString AmmoType;

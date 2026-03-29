@@ -25,10 +25,10 @@ struct ULLAMA_DEMO_API FUserBioData : public FTableRowBase
 	FString LastName;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UserBioData")
-	int32 Age;
+	int32 Age{0};
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UserBioData")
-	ESex Gender;
+	ESex Gender{ESex::Male};
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UserBioData")
 	TMap<FString, FString> CustomAttributes;

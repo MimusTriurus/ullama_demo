@@ -24,7 +24,7 @@ struct ULLAMA_DEMO_API FKnowledgeBaseData
 	FText Summary;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UKnowledgeBaseDataGetterBase* DataGetter;
+	UKnowledgeBaseDataGetterBase* DataGetter{nullptr};
 };
 
 UCLASS(BlueprintType)

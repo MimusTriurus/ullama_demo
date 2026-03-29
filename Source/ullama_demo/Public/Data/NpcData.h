@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
+#include "ULlamaActionHandler.h"
 #include "ULlamaStructures.h"
 #include "NpcData.generated.h"
 
@@ -54,6 +55,30 @@ struct FNpcActionTemplate
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC's template")
 	TMap<FString, FArrayOfString> Parameters;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC's template")
+	UULlamaActionHandlerBase* ActionHandler{nullptr};
+};
+
+USTRUCT(BlueprintType)
+struct FNpcVoices
+{
+	GENERATED_BODY()
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC's template")
+	USoundWave* Neutral{nullptr};
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC's template")
+	USoundWave* Happy{nullptr};
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC's template")
+	USoundWave* Sad{nullptr};
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC's template")
+	USoundWave* Angry{nullptr};
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC's template")
+	USoundWave* Surprise{nullptr};
 };
 
 UCLASS(BlueprintType)
@@ -73,6 +98,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC's template")
 	TArray<FNpcActionTemplate> ActionData;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC's template")
+	FNpcVoices NpcVoices;
 
 	UFUNCTION(BlueprintCallable, Category = "NPC's template")
 	FString ToJson() const;
