@@ -22,6 +22,7 @@ _ReSharper.Caches/
 /Content/3rdparty
 /Content/MetaHumans
 /builds
+/Resources
 
 # Visual Studio 2015 database file
 *.VC.db

@@ -50,6 +50,18 @@ FString UNPCDataAsset::ToJson() const
     return OutputString;
 }
 
+UULlamaActionHandlerBase* UNPCDataAsset::GetActionByName(const FString& ActionName)
+{
+    for (const FNpcActionTemplate& Action : this->ActionData)
+    {
+        if (Action.ActionTemplate.StartsWith(ActionName))
+        {
+            return Action.ActionHandler;
+        }
+    }
+    return nullptr;
+}
+
 UNPCDataAsset* UNPCDataRegistry::GetNpcData(const FName& NpcName) const
 {
     if (Npc.Contains(NpcName))

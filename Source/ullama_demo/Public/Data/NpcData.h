@@ -104,6 +104,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "NPC's template")
 	FString ToJson() const;
+
+	UFUNCTION(BlueprintCallable, Category = "NPC's template")
+	UULlamaActionHandlerBase* GetActionByName(const FString& ActionName);
 };
 
 UCLASS(BlueprintType)
