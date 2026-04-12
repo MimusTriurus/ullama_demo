@@ -16,10 +16,9 @@ public class ullama_demo : ModuleRules
 			"InputCore", 
 			"MetaHumanCore",
 			"Json", 
-			"JsonUtilities"
+			"JsonUtilities", 
+			"ULlamaPlugin"
 		});
-
-		PrivateDependencyModuleNames.AddRange(new string[] { "ULlamaPlugin" });
 
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });

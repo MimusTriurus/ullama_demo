@@ -62,6 +62,18 @@ UULlamaActionHandlerBase* UNPCDataAsset::GetActionByName(const FString& ActionNa
     return nullptr;
 }
 
+UKnowledgeBaseDataGetterBase* UNPCDataAsset::GetDataGetterByName(const FString& DataGetterName)
+{
+    for (const FNpcActionTemplate& Action : this->ActionData)
+    {
+        if (Action.ActionTemplate.StartsWith(DataGetterName))
+        {
+            return Action.DataGetter;
+        }
+    }
+    return nullptr;
+}
+
 UNPCDataAsset* UNPCDataRegistry::GetNpcData(const FName& NpcName) const
 {
     if (Npc.Contains(NpcName))

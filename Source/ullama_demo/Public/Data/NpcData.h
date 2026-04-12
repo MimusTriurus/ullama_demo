@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "UObject/Object.h"
 #include "ULlamaActionHandler.h"
+#include "KnowledgeBaseData.h"
 #include "ULlamaStructures.h"
 #include "NpcData.generated.h"
 
@@ -58,6 +59,9 @@ struct FNpcActionTemplate
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC's template")
 	UULlamaActionHandlerBase* ActionHandler{nullptr};
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "NPC's template")
+	UKnowledgeBaseDataGetterBase* DataGetter{nullptr};
 };
 
 USTRUCT(BlueprintType)
@@ -107,6 +111,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "NPC's template")
 	UULlamaActionHandlerBase* GetActionByName(const FString& ActionName);
+
+	UFUNCTION(BlueprintCallable, Category = "NPC's template")
+	UKnowledgeBaseDataGetterBase* GetDataGetterByName(const FString& DataGetterName);
 };
 
 UCLASS(BlueprintType)

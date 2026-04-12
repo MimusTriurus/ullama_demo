@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "CoreMinimal.h"
+#include "ULlamaStructures.h"
 #include "UObject/Object.h"
 #include "KnowledgeBaseData.generated.h"
 
@@ -10,9 +11,9 @@ class ULLAMA_DEMO_API UKnowledgeBaseDataGetterBase : public UObject
 	GENERATED_BODY()
 public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="NpcKnowledgeBase")
-	FString Get();
+	FString Get(UObject* VM, const FString& ActionName, const TMap<FString, FString>& Params);
 
-	virtual FString Get_Implementation();
+	virtual FString Get_Implementation(UObject* VM, const FString& ActionName, const TMap<FString, FString>& Params);
 };
 
 USTRUCT(BlueprintType)
@@ -49,8 +50,39 @@ public:
 	UNpcKnowledgeBaseData* GetNpcKnowledgeBaseData(const FName& NpcName) const;
 
 	UFUNCTION(BlueprintCallable, Category = "NpcKnowledgeBase")
-	FString GetKnowledgeBaseData(const FName& NpcName, int32 Idx) const;
+	FString GetKnowledgeBaseData(const FName& NpcName, int32 Idx, UObject* PlayerController = nullptr) const;
 
 	UFUNCTION(BlueprintCallable, Category = "NpcKnowledgeBase")
 	TArray<FString> GetNpcKnowledgeBaseDataSummaries(const FName& NpcName) const;
+};
+
+USTRUCT(BlueprintType)
+struct FKnowledgeBaseRecord
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FString Request;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FNpcAction Action;
+};
+
+UCLASS(BlueprintType)
+class UNpcKnowledgeBase : public UObject
+{
+	GENERATED_BODY()
+
+public:
+	UFUNCTION(BlueprintCallable, Category = "NpcKnowledgeBase")
+	bool Init(FName NpcName);
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TArray<FKnowledgeBaseRecord> KnowledgeBaseDataGetters;
+
+	UFUNCTION(BlueprintCallable, Category = "NpcKnowledgeBase")
+	TArray<FString> GetKnowledgeBaseDataSummaries() const;
+
+	UFUNCTION(BlueprintCallable, Category = "NpcKnowledgeBase")
+	FNpcAction GetNpcDataGetterAction(int32 Idx) const;
 };
