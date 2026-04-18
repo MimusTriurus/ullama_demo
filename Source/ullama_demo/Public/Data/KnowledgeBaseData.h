@@ -22,46 +22,6 @@ public:
 };
 
 USTRUCT(BlueprintType)
-struct ULLAMA_DEMO_API FKnowledgeBaseData
-{
-	GENERATED_BODY()
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(MultiLine=true))
-	FText Summary;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	UKnowledgeBaseDataGetterBase* DataGetter{nullptr};
-};
-
-UCLASS(BlueprintType)
-class UNpcKnowledgeBaseData : public UDataAsset
-{
-	GENERATED_BODY()
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<FKnowledgeBaseData> KnowledgeBaseDatasTemplates;
-};
-
-UCLASS(BlueprintType)
-class UNpcKnowledgeBaseDataRegistry : public UDataAsset
-{
-	GENERATED_BODY()
-
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TMap<FName, UNpcKnowledgeBaseData*> KnowledgeBases;
-	
-	UFUNCTION(BlueprintCallable, Category = "NpcKnowledgeBase")
-	UNpcKnowledgeBaseData* GetNpcKnowledgeBaseData(const FName& NpcName) const;
-
-	UFUNCTION(BlueprintCallable, Category = "NpcKnowledgeBase")
-	FString GetKnowledgeBaseData(const FName& NpcName, int32 Idx, UObject* PlayerController = nullptr) const;
-
-	UFUNCTION(BlueprintCallable, Category = "NpcKnowledgeBase")
-	TArray<FString> GetNpcKnowledgeBaseDataSummaries(const FName& NpcName) const;
-};
-
-USTRUCT(BlueprintType)
 struct FKnowledgeBaseRecord
 {
 	GENERATED_BODY()
