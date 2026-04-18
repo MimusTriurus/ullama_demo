@@ -1,6 +1,15 @@
 ﻿#include "Data/KnowledgeBaseData.h"
 
-FString UKnowledgeBaseDataGetterBase::Get_Implementation(UObject* VM, const FString& ActionName, const TMap<FString, FString>& Params)
+FString UKnowledgeBaseDataGetterBase::GetNpcState_Implementation(UObject* VM, const FString& ActionName, const TMap<FString, FString>& Params)
+{
+	return FString();
+}
+
+FString UKnowledgeBaseDataGetterBase::GetUserState_Implementation(
+	UObject* VM,
+	const FString& ActionName,
+	const TMap<FString, FString>& Params
+	)
 {
 	return FString();
 }
@@ -25,7 +34,7 @@ FString UNpcKnowledgeBaseDataRegistry::GetKnowledgeBaseData(const FName& NpcName
 			auto& KBD = KB->KnowledgeBaseDatasTemplates[Idx];
 			if (KBD.DataGetter)
 			{
-				Result = KBD.DataGetter->Get(nullptr, "", {});
+				Result = KBD.DataGetter->GetNpcState(nullptr, "", {});
 			}
 			else
 			{

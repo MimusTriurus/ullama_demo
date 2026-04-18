@@ -11,9 +11,14 @@ class ULLAMA_DEMO_API UKnowledgeBaseDataGetterBase : public UObject
 	GENERATED_BODY()
 public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="NpcKnowledgeBase")
-	FString Get(UObject* VM, const FString& ActionName, const TMap<FString, FString>& Params);
+	FString GetNpcState(UObject* VM, const FString& ActionName, const TMap<FString, FString>& Params);
 
-	virtual FString Get_Implementation(UObject* VM, const FString& ActionName, const TMap<FString, FString>& Params);
+	virtual FString GetNpcState_Implementation(UObject* VM, const FString& ActionName, const TMap<FString, FString>& Params);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="NpcKnowledgeBase")
+	FString GetUserState(UObject* VM, const FString& ActionName, const TMap<FString, FString>& Params);
+
+	virtual FString GetUserState_Implementation(UObject* VM, const FString& ActionName, const TMap<FString, FString>& Params);
 };
 
 USTRUCT(BlueprintType)
