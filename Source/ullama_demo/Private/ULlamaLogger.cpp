@@ -21,9 +21,18 @@ void UULlamaLogger::PrintUsrRequest(const FUserRequestData& UsrRequestData)
 
 void UULlamaLogger::PrintNpcResponse(const FLlmResponseData& NpcResponseData)
 {
+	FString ParametersStringList;
+	for (auto& Parameters : NpcResponseData.Action.Parameters)
+	{
+		ParametersStringList += FString::Printf(TEXT("%s=%s "), *Parameters.Key, *Parameters.Value);
+	}
 	UE_LOG(
 		LogULlama,
 		Display,
-		TEXT("PrintNpcResponse")
+		TEXT("===\nAnswer: %s\nEmotion: %s\nAction: %s\nParameters: %s"),
+		*NpcResponseData.Answer,
+		*NpcResponseData.Emotion,
+		*NpcResponseData.Action.Name,
+		*ParametersStringList
 	);
 }
