@@ -36,3 +36,33 @@ void UULlamaLogger::PrintNpcResponse(const FLlmResponseData& NpcResponseData)
 		*ParametersStringList
 	);
 }
+
+void UULlamaLogger::PrintMessage(const FString& Message)
+{
+	UE_LOG(
+		LogULlama,
+		Display,
+		TEXT("%s"),
+		*Message
+	);
+}
+
+void UULlamaLogger::PrintError(const FString& Error)
+{
+	UE_LOG(
+		LogULlama,
+		Error,
+		TEXT("%s"),
+		*Error
+	);
+}
+
+void UULlamaLogger::PrintWarning(const FString& Warning)
+{
+	UE_LOG(
+		LogULlama,
+		Warning,
+		TEXT("%s"),
+		*Warning
+	);
+}
