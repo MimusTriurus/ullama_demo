@@ -64,9 +64,10 @@ UULlamaActionHandlerBase* UNPCDataAsset::GetActionByName(const FString& ActionNa
 
 UKnowledgeBaseDataGetterBase* UNPCDataAsset::GetDataGetterByName(const FString& DataGetterName)
 {
+    auto FunctionName = DataGetterName + "(";
     for (const FNpcActionTemplate& Action : this->ActionData)
     {
-        if (Action.ActionTemplate.StartsWith(DataGetterName))
+        if (Action.ActionTemplate.StartsWith(FunctionName))
         {
             return Action.DataGetter;
         }
