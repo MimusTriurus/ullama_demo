@@ -52,9 +52,10 @@ FString UNPCDataAsset::ToJson() const
 
 UULlamaActionHandlerBase* UNPCDataAsset::GetActionByName(const FString& ActionName)
 {
+    auto FunctionName = ActionName + "(";
     for (const FNpcActionTemplate& Action : this->ActionData)
     {
-        if (Action.ActionTemplate.StartsWith(ActionName))
+        if (Action.ActionTemplate.StartsWith(FunctionName))
         {
             return Action.ActionHandler;
         }
