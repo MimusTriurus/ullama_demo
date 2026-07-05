@@ -18,7 +18,7 @@ bool UNpcKnowledgeBase::Init(FName NpcName)
 {
     KnowledgeBaseDataGetters.Empty();
 	
-    FString FilePath = FPaths::ProjectDir() / TEXT("Resources/NPCs") / NpcName.ToString() / TEXT("knowledge_base.json");
+    FString FilePath = FPaths::ProjectDir() / TEXT("Resources/NPCs") / NpcName.ToString() / TEXT("emb") / TEXT("knowledge_base.json");
     FPaths::NormalizeFilename(FilePath);
 
     FString JsonString;
@@ -45,7 +45,7 @@ bool UNpcKnowledgeBase::Init(FName NpcName)
 
         FKnowledgeBaseRecord Record;
 
-        (*RecordObject)->TryGetStringField(TEXT("request"), Record.Request);
+        (*RecordObject)->TryGetStringField(TEXT("signature"), Record.Request);
 
         const TSharedPtr<FJsonObject>* ActionObject;
         if ((*RecordObject)->TryGetObjectField(TEXT("action"), ActionObject))

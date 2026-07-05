@@ -12,7 +12,7 @@ void UULlamaLogger::PrintUsrRequest(const FUserRequestData& UsrRequestData)
 	UE_LOG(
 		LogULlama,
 		Display,
-		TEXT("===\nRequest: %s\nNpcState: %s\nUserState: %s\n===\n"),
+		TEXT("   \nRequest: %s\nNpcState: %s\nUserState: %s\n   \n"),
 		*UsrRequestData.RequestOfUser,
 		*UsrRequestData.Context,
 		*UsrRequestData.StateOfUser
@@ -29,7 +29,7 @@ void UULlamaLogger::PrintNpcResponse(const FLlmResponseData& NpcResponseData)
 	UE_LOG(
 		LogULlama,
 		Display,
-		TEXT("===\nAnswer: %s\nEmotion: %s\nAction: %s\nParameters: %s\n"),
+		TEXT("   \nAnswer: %s\nEmotion: %s\nAction: %s\nParameters: %s\n   \n"),
 		*NpcResponseData.Answer,
 		*NpcResponseData.Emotion,
 		*NpcResponseData.Action.Name,
