@@ -29,10 +29,10 @@
 ```mermaid
 flowchart TD
     Player["🎤 Игрок<br/>(микрофон)"]
-    STT["◇ STT плагин -<br/>речь → текст"]
+    STT["◇ STT плагин -<br/>речь -> текст"]
     KB["◇ RAG плагин -<br/>База знаний об игровом мире<br/>● факты этого NPC"]
     LLM["LLM плагин -<br/>локальный инференс (CUDA)<br/> ◇ llm модель +<br/> ● LoRA + ● промпт + ● грамматика"]
-    TTS["◇ TTS плагин -<br/>текст → voice cloning → речь<br/>● сэмплы голоса NPC"]
+    TTS["◇ TTS плагин -<br/>текст -> voice cloning -> речь<br/>● сэмплы голоса NPC"]
     ACT["Эмоции + действие<br/>● ActionHandler (Blueprint)"]
     LS["◇ LipSync плагин -<br/>анимация губ MetaHuman"]
     UI["● Unreal Game State<br/>MVVM инвентаря торговца и т.д. и т.п."]
