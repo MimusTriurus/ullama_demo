@@ -324,7 +324,7 @@ flowchart TD
 
 Как это выглядит вживую - на видео ниже.
 
-[![Пять эмоций NPC: Neutral, Happy, Sad, Angry, Surprise](https://img.youtube.com/vi/gSZeD8mMLNQ/maxresdefault.jpg)](https://www.youtube.com/watch?v=gSZeD8mMLNQ)
+[![Пять эмоций NPC: Neutral, Happy, Sad, Angry, Surprise](img/video-emotions.jpg)](https://www.youtube.com/watch?v=gSZeD8mMLNQ)
 
 > 🎬 **Видео:** NPC последовательно произносит пять реплик — по одной на `Neutral`, `Happy`, `Sad`, `Angry` и `Surprise`. Тэг задаётся напрямую, LLM в этом ролике не участвует.
 
@@ -493,7 +493,7 @@ flowchart TD
 
 ## Обычное взаимодействие игрока с NPC-торговцем
 
-[![Полный диалог с NPC-торговцем: все шесть действий](https://img.youtube.com/vi/PsmHUTSdKiM/maxresdefault.jpg)](https://www.youtube.com/watch?v=PsmHUTSdKiM)
+[![Полный диалог с NPC-торговцем: все шесть действий](img/video-trader-base.jpg)](https://www.youtube.com/watch?v=PsmHUTSdKiM)
 
 > **Видео:** полный диалог с торговцем — игрок просит показать категорию товаров и конкретный ствол, покупает, пробует взять то, чего нет на складе и на что не хватает денег, под конец спрашивает не по теме. За одну сессию отрабатываются все шесть действий.
 
@@ -503,7 +503,7 @@ flowchart TD
 
 ## Проверяем реакцию NPC на запросы которые выходят за пределы его "роли"
 
-[![Запросы вне роли торговца: реакция DoNothing](https://img.youtube.com/vi/1a4CBY5cwbc/maxresdefault.jpg)](https://www.youtube.com/watch?v=1a4CBY5cwbc)
+[![Запросы вне роли торговца: реакция DoNothing](img/video-trader-out-of-role.jpg)](https://www.youtube.com/watch?v=1a4CBY5cwbc)
 
 > 🎬 **Видео:** игрок спрашивает про политику в столице и который час в Токио; торговец остаётся в образе и по игре не делает ничего (`DoNothing`).
 
@@ -513,7 +513,7 @@ flowchart TD
 
 ## Пробуем развести торговца (обман, абьюз, газлайтинг)
 
-[![Попытка развести торговца: обман, абьюз, газлайтинг](https://img.youtube.com/vi/WU0fz8U1nVg/maxresdefault.jpg)](https://www.youtube.com/watch?v=WU0fz8U1nVg)
+[![Попытка развести торговца: обман, абьюз, газлайтинг](img/video-trader-dispute.jpg)](https://www.youtube.com/watch?v=WU0fz8U1nVg)
 
 > 🎬 **Видео:** игрок убеждает, что денег хватает ("да заплачу я, не переживай"), и требует продать за полцены. Торговец вежлив, но непреклонен — сделка не проходит.
 
