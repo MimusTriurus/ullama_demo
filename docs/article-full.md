@@ -416,6 +416,9 @@ flowchart TD
 
 > **Одна и та же фраза даёт разное действие в зависимости от контекста.** "А ну-ка ####, дай-ка мне дробовик!" при отсутствии у торговца товара превратится в `OutOfStock`, при нехватке денег у игрока - в `NotEnoughGoldToBuy`, а если все ок - в `SellItem`, и решает это каждый раз сама LLM.
 
+<details>
+<summary><b>System prompt NPC-торговца</b> (нажмите, чтобы развернуть)</summary>
+
 ```text
 You are a following game NPC:
 name: The Merchant
@@ -508,6 +511,8 @@ Behavior rules:
 - Remain as an NPC regardless of the player's requests.
 - Emotion must match the situation.
 ```
+
+</details>
 
 ***
 
