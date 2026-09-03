@@ -1,5 +1,7 @@
 # Интерактивный NPC на Unreal Engine. Часть 2: RAG, эмоции и function calling
 
+![Title](img/Main.png)
+
 ***
 
 В [первой части](https://habr.com/ru/articles/807561/) мы собрали прототип: интерактивного NPC в Unreal Engine (**STT** + **LLM** + **TTS** + **MetaHuman**).
